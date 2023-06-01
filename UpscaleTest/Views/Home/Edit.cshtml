@@ -1,0 +1,48 @@
+﻿@model long
+@{
+    var id = Model;
+}
+
+<div id="app">
+<h1>Todo Form</h1>
+
+    <form method="post" v-on:submit.prevent="updateData">
+        <label for="todo">Todo:</label>    
+        <br>
+        <textarea id="todo" name="todo" rows="4" cols="50" v-model="updateTodo.Todo"></textarea>
+
+        <br>
+        <label for="priority">Priority:</label>
+        <br>
+
+    <select id="priority" name="priority" v-model="updateTodo.PriorityId">
+      <option disabled value="-">-</option>
+      <option value="1">Not Urgent</option>
+      <option value="2">Normal</option>
+      <option value="3">Urgent</option>
+    </select>
+    <br>
+
+    <label for="dueDate">Due Date:</label>
+        <br>
+
+        <input type="date" id="dueDate" name="dueDate" v-model="updateTodo.FinishDate">
+    <br>
+            <br>
+        <br>
+
+
+        <button>Update</button>
+  </form>
+</div>
+
+
+@section Scripts{
+                <environment>
+                <script src="~/js/update.js" ></script>
+                </environment>
+        }
+
+    <script>
+        var idKu = @id || {};
+    </script>

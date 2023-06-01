@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="app">
+    <h1>Todo List</h1>
+
+    <p>
+        <a asp-action="Create">Create</a>
+    </p>
+    <label>Sort By :</label>
+    <select id="sortBy" name="sort" v-model="searchParam.sortBy" v-on:change.prevent="getData()">
+        <option disabled value="-">-</option>
+        <option value="CreatedDate">Created Date</option>
+        <option value="Priority">Priority</option>
+    </select>
+    <select id="sortType" name="sort" v-model="searchParam.sortType" v-on:change.prevent="getData()">
+        <option disabled value="-">-</option>
+        <option value="ASC">Ascending</option>
+        <option value="DESC">Descending</option>
+    </select>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                Todo
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Created Date
+    </th>
+                <th>
+                    Finish Date
+               </th>
+                <th>
+                    Done
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr v-for="item in todoList" :class="{ done: item.isDone }">
+                    <td>
+                        {{item.id}}
+                    </td>
+                <td>
+                    {{item.todo}}
+                </td>
+                    <td>
+                    {{item.priorityModel.priority}}
+                    </td>
+                    <td>
+                    {{item.createdDate}}
+
+                    </td>
+                    <td>
+                    {{item.finishDate}}
+
+                    </td>
+                    <td>
+                    <input type="checkbox" v-model="item.isDone" v-on:change.prevent="updateTodoChecklistOnly(item)" />
+                    </td>
+                    <td>
+                        <a v-bind:href="'@Url.Action("Edit", "Home")/' + item.id">Edit</a>
+                        <a class="delete" v-on:click="deleteItem(item.id)">Delete</a>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+</div>
+
+        @section Scripts{
+        <environment>
+        <script src="~/js/index.js" ></script>
+        </environment>
+        }
