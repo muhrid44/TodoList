@@ -26,3 +26,40 @@ body {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.isTodayDueDate {
+    background-color: yellow;
+}
+
+.isOverDueDate {
+    background-color: red;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
+}
+
+.grid-container > div {
+    text-align: left;
+}
+
+.yellow-box {
+    height: 100%;
+    width: 60px;
+    background-color: yellow;
+    display: inline-block;
+}
+
+.red-box {
+    height: 100%;
+    width: 60px;
+    background-color: red;
+    display: inline-block;
+}
+
+.alert{
+    position:relative;
+    bottom:8px;
+}

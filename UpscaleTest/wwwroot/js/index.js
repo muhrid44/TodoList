@@ -30,11 +30,19 @@
                     success: function (result) {
                         self.todoList = [];
                         for (var i = 0; i < result.length; i++) {
-                            var createdDate = new Date(result[i].createdDate)
-                            var finishDate = new Date(result[i].finishDate)
+                            var createdDate = new Date(result[i].createdDate);
+                            var finishDate = new Date(result[i].finishDate);
                             result[i].createdDate = createdDate.toLocaleDateString();
                             result[i].finishDate = finishDate.toLocaleDateString();
-                            self.todoList.push(result[i])
+                            var today = new Date();
+
+                            //check whether todo's due date today
+                            result[i]['isTodayDueDate'] = (result[i].finishDate == today.toLocaleDateString() && result[i].isDone == false);
+
+                            //check whether todo's due date overdue
+                            result[i]['isOverDueDate'] = (result[i].finishDate < today.toLocaleDateString() && result[i].isDone == false);
+                            self.todoList.push(result[i]);
+
                         }
                     }
                 })

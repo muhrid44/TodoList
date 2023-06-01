@@ -8,17 +8,31 @@
     <p>
         <a asp-action="Create">Create</a>
     </p>
-    <label>Sort By :</label>
-    <select id="sortBy" name="sort" v-model="searchParam.sortBy" v-on:change.prevent="getData()">
-        <option disabled value="-">-</option>
-        <option value="CreatedDate">Created Date</option>
-        <option value="Priority">Priority</option>
-    </select>
-    <select id="sortType" name="sort" v-model="searchParam.sortType" v-on:change.prevent="getData()">
-        <option disabled value="-">-</option>
-        <option value="ASC">Ascending</option>
-        <option value="DESC">Descending</option>
-    </select>
+
+    <div class="grid-container">
+        <div>
+        <label>Sort By :</label>
+        <select id="sortBy" name="sort" v-model="searchParam.sortBy" v-on:change.prevent="getData()">
+            <option disabled value="-">-</option>
+            <option value="CreatedDate">Created Date</option>
+            <option value="Priority">Priority</option>
+        </select>
+        <select id="sortType" name="sort" v-model="searchParam.sortType" v-on:change.prevent="getData()">
+            <option disabled value="-">-</option>
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+        </div>
+
+        <div>
+        <span class="alert">Today Due Date : </span>
+        <div class="yellow-box"></div>
+        <span class="alert">Over Due Date : </span>
+        <div class="red-box"></div>
+
+        </div>
+
+    </div>
 
     <table class="table">
         <thead>
@@ -27,25 +41,25 @@
                     Id
                 </th>
                 <th>
-                Todo
+                    Todo
                 </th>
                 <th>
                     Priority
                 </th>
                 <th>
                     Created Date
-    </th>
+                </th>
                 <th>
                     Finish Date
-               </th>
+                </th>
                 <th>
                     Done
-                    </th>
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-                <tr v-for="item in todoList" :class="{ done: item.isDone }">
+            <tr v-for="item in todoList" :class="{ done: item.isDone, isTodayDueDate: item.isTodayDueDate, isOverDueDate: item.isOverDueDate }">
                     <td>
                         {{item.id}}
                     </td>
