@@ -15,3 +15,5 @@ How to run this app :
 6.  once finished, you can start your app by pressing F5 or CTRL+F5
 
 Techs used : HTML, CSS, Javascript, VueJS, jQuery, C#, .NET 6, Entity Framework, SQL Server (local)
+
+Feel free to contact me for further information :)
