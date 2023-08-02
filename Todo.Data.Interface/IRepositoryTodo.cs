@@ -1,8 +1,8 @@
-﻿using UpscaleTest.Models;
+﻿using Todo.Model;
 
-namespace UpscaleTest.Service
+namespace Todo.Data.Interface
 {
-    public interface IServiceTodo
+    public interface IRepositoryTodo
     {
         Task<List<TodoModel>> GetAllTodo(SortingModel sorting);
         Task CreateTodo(TodoModel data);
@@ -10,6 +10,7 @@ namespace UpscaleTest.Service
         Task UpdateTodoChecklistOnly(TodoModel data);
         Task<TodoModel> GetDataById(int Id);
         Task DeleteById(int Id);
+
 
     }
 }

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UpscaleTest.Models;
-using UpscaleTest.Repository;
+﻿using Todo.Data.Interface;
+using Todo.Model;
+using Todo.Service.Interface;
 
-namespace UpscaleTest.Service
+namespace Todo.Service
 {
     public class ServiceTodo : IServiceTodo
     {

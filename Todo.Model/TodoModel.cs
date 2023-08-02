@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UpscaleTest.Models
+namespace Todo.Model
 {
-    public class TodoModel
+    public class TodoModel : PriorityModel
     {
             public int Id { get; set; }
             public string? Todo { get; set; }
@@ -15,6 +15,6 @@ namespace UpscaleTest.Models
             [Display(Name = "Done")]
             public bool IsDone { get; set; }
 
-            public PriorityModel? PriorityModel { get; set; }
+            //public PriorityModel? PriorityModel { get; set; }
     }
 }

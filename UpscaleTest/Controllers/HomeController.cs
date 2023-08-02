@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using UpscaleTest.Models;
-using UpscaleTest.Service;
+using Todo.Model;
+using Todo.Service.Interface;
 
 namespace UpscaleTest.Controllers
 {

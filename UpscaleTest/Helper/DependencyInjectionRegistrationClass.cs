@@ -1,7 +1,11 @@
-﻿using UpscaleTest.Repository;
-using UpscaleTest.Service;
+﻿
+using Microsoft.Extensions.DependencyInjection;
+using Todo.Data.Interface;
+using Todo.Data;
+using Todo.Service.Interface;
+using Todo.Service;
 
-namespace UpscaleTest.Helper
+namespace Todo.Helper
 {
     public static class DependencyInjectionRegistrationClass
     {

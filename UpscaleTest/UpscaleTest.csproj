@@ -22,4 +22,17 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Todo.Data.Interface\Todo.Data.Interface.csproj" />
+    <ProjectReference Include="..\Todo.Data\Todo.Data.csproj" />
+    <ProjectReference Include="..\Todo.Helper\Todo.Helper.csproj" />
+    <ProjectReference Include="..\Todo.Model\Todo.Model.csproj" />
+    <ProjectReference Include="..\Todo.Service.Interface\Todo.Service.Interface.csproj" />
+    <ProjectReference Include="..\Todo.Service\Todo.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

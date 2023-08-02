@@ -1,4 +1,4 @@
-namespace UpscaleTest.Models
+namespace Todo.Model
 {
     public class ErrorViewModel
     {

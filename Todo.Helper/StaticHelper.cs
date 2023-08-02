@@ -1,4 +1,4 @@
-﻿namespace UpscaleTest.Helper
+﻿namespace Todo.Helper
 {
     public static class StaticHelper
     {
