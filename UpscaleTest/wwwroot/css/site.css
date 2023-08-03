@@ -22,7 +22,7 @@ body {
 }
 
 .delete {
-    color: red;
+    color: darksalmon;
     text-decoration: underline;
     cursor: pointer;
 }

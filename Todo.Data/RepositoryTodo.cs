@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using System;
 using System.Linq;
 using Todo.Data.Interface;
 using Todo.Helper;
@@ -15,20 +16,6 @@ namespace Todo.Data
 
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
-                //var query = from TodoTable in dbContext.TodoTable
-                //            join PriorityTable in dbContext.PriorityTable on TodoTable.PriorityId equals PriorityTable.Id
-                //            select new TodoModel
-                //            {
-                //                Id = TodoTable.Id,
-                //                Todo = TodoTable.Todo,
-                //                PriorityId = TodoTable.PriorityId,
-                //                CreatedDate = TodoTable.CreatedDate,
-                //                FinishDate = TodoTable.FinishDate,
-                //                IsDone = TodoTable.IsDone,
-                //                PriorityModel = PriorityTable
-                //            };
-
-                //Todo = await query.ToListAsync();
 
                 if (sorting.SortType == "-")
                 {
@@ -54,14 +41,23 @@ namespace Todo.Data
         {
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
-                var query = @"";
+                var query = @"INSERT INTO [TodoTable](Todo, PriorityId, CreatedDate, FinishDate, IsDone)
+                              VALUES (@Todo, @PriorityId, @CreatedDate, @FinishDate, @IsDone)";
+
+                var exec = await db.ExecuteAsync(query, data);
             }
         }
         public async Task UpdateTodo(TodoModel data)
         {
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
+                var query = @"UPDATE [TodoTable]
+                            SET [Todo] = @Todo,
+                            [PriorityId] = @PriorityId,
+                            [FinishDate] = @FinishDate
+                            WHERE Id = @Id";
 
+                var exec = await db.ExecuteAsync(query, data);
             }
 
         }
@@ -69,14 +65,11 @@ namespace Todo.Data
         {
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
-                //TodoModel? DataSelectedById = await dbContext.TodoTable.FindAsync(data.Id);
+                var query = @"UPDATE [TodoTable]
+                            SET [IsDone] = @IsDone
+                            WHERE Id = @Id";
 
-                //if (DataSelectedById != null)
-                //{
-                //    DataSelectedById.IsDone = data.IsDone;
-
-                //    await dbContext.SaveChangesAsync();
-                //}
+                var exec = await db.ExecuteAsync(query, data);
             }
 
         }
@@ -85,12 +78,13 @@ namespace Todo.Data
         {
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
-                //TodoModel? DataSelectedById = await dbContext.TodoTable.FindAsync(Id);
+                var query = @$"SELECT tt.*, pt.Priority FROM [TodoTable] as tt
+                            INNER JOIN [PriorityTable] as pt ON tt.PriorityId = pt.Id 
+                            WHERE tt.Id = {Id}";
 
-                //return DataSelectedById;
+                var exec = await db.QueryAsync<TodoModel>(query);
 
-                return null;
-
+                return exec.FirstOrDefault();
             }
 
         }
@@ -99,17 +93,14 @@ namespace Todo.Data
         {
             using (var db = new SqlConnection(StaticHelper.ConnectionString))
             {
-                //TodoModel? DataSelectedById = await dbContext.TodoTable.FindAsync(Id);
+                var query = @$"DELETE FROM [TodoTable]
+                            WHERE [Id] = {Id}";
 
-                //if(DataSelectedById != null)
-                //{
-                //    dbContext.TodoTable.Remove(DataSelectedById);
-
-                //    await dbContext.SaveChangesAsync();
-
-                }
+                var exec = await db.ExecuteAsync(query);
 
             }
+
+        }
 
         }
 
